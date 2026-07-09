@@ -48,4 +48,4 @@ Bash
 
 📈 Deployment
 This project is deployed on Streamlit Cloud for global accessibility.
-[Live Demo Link Here]
+[https://tourbuddy-ai--a-multiagent-travel-planner-maihgwapplngk62wc8gp.streamlit.app/]
