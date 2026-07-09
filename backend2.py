@@ -5,10 +5,6 @@ from dotenv import load_dotenv
 from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, START, END
 
-#import psycopg
-from psycopg.rows import dict_row
-
-#from langgraph.checkpoint.postgres import PostgresSaver
 
 load_dotenv()
 
