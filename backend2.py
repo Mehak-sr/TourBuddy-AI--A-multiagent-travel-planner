@@ -64,7 +64,7 @@ workflow.add_edge("planner", END)
 
 
 
-DATABASE_URL = get_database_url()
+#DATABASE_URL = get_database_url()
 def get_checkpointer():
     
     checkpointer = MemorySaver()
