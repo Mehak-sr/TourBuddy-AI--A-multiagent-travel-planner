@@ -5,12 +5,14 @@ from dotenv import load_dotenv
 from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, START, END
 
-import psycopg
+#import psycopg
 from psycopg.rows import dict_row
 
-from langgraph.checkpoint.postgres import PostgresSaver
+#from langgraph.checkpoint.postgres import PostgresSaver
 
 load_dotenv()
+
+from langgraph.checkpoint.memory import MemorySaver
 
 from langchain_core.messages import (
     AnyMessage,
@@ -69,15 +71,12 @@ workflow.add_edge("planner", END)
 DATABASE_URL = get_database_url()
 def get_checkpointer():
     
-    conn = psycopg.connect(DATABASE_URL, autocommit=True)
-    checkpointer = PostgresSaver(conn)
-    checkpointer.setup()
+    checkpointer = MemorySaver()
     return checkpointer
 
 
 checkpointer = get_checkpointer()
 app = workflow.compile(checkpointer=checkpointer)
-
 # 5. Function to run in Streamlit
 import uuid
 
