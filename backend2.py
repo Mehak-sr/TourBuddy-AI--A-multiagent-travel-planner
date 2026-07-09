@@ -38,7 +38,7 @@ import operator
 from langchain_groq import ChatGroq
 from langgraph.graph import StateGraph, END
 
-# 1. State Define karein (Ab hotel/flight ki jagah interests aur activities hain)
+# 1. State Define karein 
 class TravelState(TypedDict):
     location: str
     days: int
@@ -65,16 +65,16 @@ workflow.set_entry_point("planner")
 workflow.add_edge("planner", END)
 
 
-# Agar connection band ho gaya hai, toh naya connection banayein
+
 DATABASE_URL = get_database_url()
 def get_checkpointer():
-    # Har baar naya connection banayein
+    
     conn = psycopg.connect(DATABASE_URL, autocommit=True)
     checkpointer = PostgresSaver(conn)
     checkpointer.setup()
     return checkpointer
 
-# Graph compile karein
+
 checkpointer = get_checkpointer()
 app = workflow.compile(checkpointer=checkpointer)
 
@@ -82,7 +82,6 @@ app = workflow.compile(checkpointer=checkpointer)
 import uuid
 
 def run_travel_agent(location, days, interests):
-    # Ek unique thread_id generate karein
     thread_id = f"user_{uuid.uuid4().hex}"
     
     # Config setup
@@ -96,8 +95,6 @@ def run_travel_agent(location, days, interests):
         "itinerary": ""
     }
     
-    # Graph invoke karte waqt config pass karein
-    # Note: 'config' parameter ka use karein
     result = app.invoke(initial_state, config=config)
     
     return result["itinerary"]
