@@ -32,6 +32,12 @@ if st.sidebar.button("Generate Itinerary"):
 
             if itinerary:
                 st.balloons()
+                st.download_button(
+                    label="📥 Download Itinerary as Text File",
+                    data=itinerary,
+                    file_name="My_Travel_Plan.txt",
+                    mime="text/plain"
+                )
             
             # Professional Display using Expanders
             st.success("Itinerary Generated Successfully!")
