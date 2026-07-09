@@ -17,7 +17,7 @@ from langchain_core.messages import (
     SystemMessage,
 )
 
-def get_database_url():
+"""def get_database_url():
     database_url = os.getenv("DATABASE_URL")
 
     if not database_url:
@@ -29,7 +29,7 @@ def get_database_url():
         separator = "&" if "?" in database_url else "?"
         database_url = f"{database_url}{separator}sslmode=require"
 
-    return database_url
+    return database_url"""
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 import operator
@@ -77,19 +77,7 @@ app = workflow.compile(checkpointer=checkpointer)
 import uuid
 
 def run_travel_agent(location, days, interests):
-    thread_id = f"user_{uuid.uuid4().hex}"
-    
-    # Config setup
-    config = {"configurable": {"thread_id": thread_id}}
-    
-    # Initial state
-    initial_state = {
-        "location": location,
-        "days": days,
-        "interests": interests,
-        "itinerary": ""
-    }
-    
+    config = {"configurable": {"thread_id": "unique_thread_id"}} # Ya unique ID use karein
+    initial_state = {"location": location, "days": days, "interests": interests}
     result = app.invoke(initial_state, config=config)
-    
     return result["itinerary"]
