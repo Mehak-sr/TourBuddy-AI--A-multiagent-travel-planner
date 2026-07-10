@@ -84,4 +84,17 @@ if st.sidebar.button("Generate Itinerary"):
             st.info("Check the details below for your trip's cost breakdown:")
             st.write(itinerary.split("Budget Breakdown")[-1] if "Budget Breakdown" in itinerary else "AI is calculating your detailed breakdown...")
 
+            sections = itinerary.split("Day")
+
+
+            st.subheader("🌍 About the Destination")
+            st.write(sections[0].replace("**", "")) 
+
+
+            st.subheader("📅 Your Itinerary")
+            for i in range(1, len(sections)):
+                if i <= days: # Sirf utne din jitne user ne select kiye
+                    with st.expander(f"📅 Day {i}"):
+                         st.write(sections[i].replace("**", ""))
+
 st.sidebar.info("Built with LangGraph & Groq AI")
