@@ -46,8 +46,9 @@ if st.sidebar.button("Generate Itinerary"):
             # Splitting output by Day (Assumes LLM provides it day-wise)
             days_list = itinerary.split("Day")
             for i, day_content in enumerate(days_list):
-                if day_content.strip():
-                    with st.expander(f"🗓️ Day {i}", expanded=(i==1)):
-                        st.write(day_content)
+   
+                if day_content.strip() and i > 0 and i <= days: 
+                   with st.expander(f"📅 Day {i}"):
+                       st.write(day_content.strip())
 
 st.sidebar.info("Built with LangGraph & Groq AI")
