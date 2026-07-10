@@ -44,11 +44,19 @@ if st.sidebar.button("Generate Itinerary"):
             st.markdown("---")
             
             # Splitting output by Day (Assumes LLM provides it day-wise)
-            days_list = itinerary.split("Day")
-            for i, day_content in enumerate(days_list):
-   
-                if day_content.strip() and i >= 0 and i <= days: 
-                   with st.expander(f"📅 Day {i}"):
-                       st.write(day_content.strip())
+            
+
+            sections = itinerary.split("Day")
+
+
+            st.subheader("🌍 About the Destination")
+            st.write(sections[0].replace("**", "")) 
+
+
+            st.subheader("📅 Your Itinerary")
+            for i in range(1, len(sections)):
+                if i <= days: # Sirf utne din jitne user ne select kiye
+                    with st.expander(f"📅 Day {i}"):
+                         st.write(sections[i].replace("**", ""))
 
 st.sidebar.info("Built with LangGraph & Groq AI")
