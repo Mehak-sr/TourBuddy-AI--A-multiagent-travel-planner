@@ -15,13 +15,13 @@ State Management: PostgreSQL
 Deployment: Streamlit Cloud
 
 ✨ Key Features
-Personalization Engine: Generates itineraries based on user-defined interests (Adventure, Food, History, etc.).
+Smart AI Itinerary Generation: Powered by multi-agent travel planning to create personalized travel schedules.
 
-Stateful Planning: Uses LangGraph to ensure the AI remembers context and maintains a logical flow through the multi-day plan.
+Real-time Weather Updates: Fetches live weather information for your chosen destination so you can plan your day accordingly.
 
-Interactive UI: A modern, sidebar-driven dashboard with dynamic day-wise itinerary rendering.
+Dynamic Budget Breakdown: Provides a clear estimation of your trip expenses to help you manage your finances efficiently.
 
-Efficiency: Automated, rapid generation of detailed travel guides that would otherwise take hours of manual research.
+Seamless Export: Easily download your customized travel itinerary as a text file for offline access.
 
 🚀 How to Run Locally
 1. Clone the repository:
