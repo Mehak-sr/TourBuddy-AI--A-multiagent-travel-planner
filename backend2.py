@@ -49,10 +49,12 @@ llm = ChatGroq(model="llama-3.3-70b-versatile", api_key=GROQ_API_KEY)
 # 3. Agent (Activity Planner)
 def activity_planner(state: TravelState):
     prompt = f"""
-    Create a {state['days']}-day itinerary for {state['location']}.
-    Focus specifically on these interests: {state['interests']}.
-    Make it detailed, engaging, and provide a day-by-day plan.
-    """
+    You are a professional travel planner. 
+    1. FIRST, provide a detailed 'About' section (2-3 sentences) about {state['location']}. 
+   Cover its vibe, culture, and key highlights.
+   2. THEN, provide a day-by-day itinerary for {state['days']} days based on {state['interests']}.
+   Format each day as 'Day 1', 'Day 2', etc.
+   """
     response = llm.invoke(prompt)
     return {"itinerary": response.content}
 
