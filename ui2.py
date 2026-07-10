@@ -47,7 +47,7 @@ if st.sidebar.button("Generate Itinerary"):
             days_list = itinerary.split("Day")
             for i, day_content in enumerate(days_list):
    
-                if day_content.strip() and i > 0 and i <= days: 
+                if day_content.strip() and i >= 0 and i <= days: 
                    with st.expander(f"📅 Day {i}"):
                        st.write(day_content.strip())
 
